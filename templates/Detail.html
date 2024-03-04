@@ -1,0 +1,86 @@
+{% extends "base.html" %} {% load static %} {% block content %}
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+<script src="{% static 'js/custom.js' %}"></script>
+<br />
+<div class="container">
+  <div class="row d-flex flex-wrap mb-4">
+    <div class="col-md-3 mb-4">
+      <div class="card align-items-stretch h-100">
+        <div class="card-body">
+          <div class="category-image">
+            <img
+              src="{{ products.productimage.url }}"
+              class="w-100 card-image"
+              alt="..."
+            />
+          </div>
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="mt-1">
+              <h5 class="card-title">{{ products.ProductDescription}}</h5>
+            </div>
+            <div class="mt-1">
+              <h5 class="card-title">{{ products.price }}</h5>
+            </div>
+          </div>
+          <div>
+            <div class="container1">
+              <div class="row">
+              <form method="post">
+                {% csrf_token %}
+                <div class="col-md-5 d-flex align-items-center">
+                  <!-- Decrease Button -->
+                  <button
+                    type="button"
+                    id="({products.product_id})"
+                    class="quantity-right-minus btn btn-outline-primary ml-1 mr-1"
+                  >
+                    -
+                  </button>
+
+                  <!-- Quantity Display -->
+                  <input
+                    style="width: 40px"
+                    type="number"
+                    id="quantity_Value"
+                    class="align-items-center qty-input mx-1"
+                    value="1"
+                  />
+
+                  <!-- Increase Button -->
+                  <button
+                    type="button"
+                    id="{{products.product_id}}"
+                    class="quantity-right-plus btn btn-outline-primary ml-1 mr-1"
+                    data-action="Increase"
+                  >
+                    +
+                  </button>
+                </div>
+
+                <div class="col-md-3">
+                  <!-- CART Button -->
+                  <button type="submit" class="btn btn-outline-primary mx-auto">
+                    CART
+                  </button>
+                </div>
+
+                <div class="col-md-2">
+                  <!-- Buy Button -->
+                  <button type="button" class="btn btn-outline-primary mx-auto">
+                    Buy
+                  </button>
+                </div>
+              </div>
+            </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br />
+      <br />
+      <br />
+    </div>
+  </div>
+  {% endblock %}
+</div>

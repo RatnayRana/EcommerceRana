@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+  <!-- Include the content from the base template -->
+  <!-- {% if messages %} -->
+    <ul class="messages">
+      <!-- {% for message in messages %}
+        {% if message.tags %} -->
+          <script
+            src="https://code.jquery.com/jquery-3.6.4.min.js"
+            integrity="sha384-..."
+            crossorigin="anonymous"
+          ></script>
+          <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-..."
+            crossorigin="anonymous"
+          ></script>
+
+          <script>
+            $(document).ready(function () {
+              $("#myModalScript").modal("show");
+            });
+          </script>
+        <!-- {% endif %} -->
+      <!-- {% endfor %} -->
+    </ul>
+  <!-- {% endif %} -->
+
+  <div
+    class="modal fade"
+    id="myModalScript"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="myModalScript">Modal title</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body"> {% for message in messages %}
+          {{ message }}<br>
+        {% endfor %}</div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+<style>
+  .card-image {
+    height: 200px; /* Set the desired height for the images */
+    object-fit: cover; /* Maintain aspect ratio and cover the container */
+  }
+</style>
+
+
+<div class="container">
+  <div class="row d-flex flex-wrap">
+    {% for category, data in products.items %}
+      <div class="col-md-3">
+        <div class="card align-items-stretch">
+          <div class="card-body">
+            <div class="category-image">
+              <a href="{% url 'Cloth' data.category_id%}">
+                <img src="{{ data.image_url.url }}" class="w-100 card-image" alt="...">
+              </a> 
+            </div>
+            <div class="mt-1">
+              <h5 class="card-title">{{ category }}</h5>
+            </div>
+            <p>{{ data.category_id }}</p>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+
+{% endblock %}
